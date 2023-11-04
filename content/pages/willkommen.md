@@ -11,7 +11,7 @@ Wer ein Fenster enthüllen möchte, kann in dieser [Liste](https://xoyondo.com/d
 
 Merci fürs Ausfüllen bis zum 20. November.
 
-AB dem 25. November wird auf diese Seite das Programm veröffentlicht.
+Ab dem 25. November wird auf diese Seite das Programm veröffentlicht.
 
 ![Flyer]({static}/images/flyer.jpeg)
 
