@@ -1,4 +1,4 @@
-Title: Anmeldung eroffnet!
+Title: Anmeldung eröffnet!
 Date: 2023-11-4 16:00
 save_as: index.html
 page_order: 001
