@@ -1,8 +1,8 @@
-AUTHOR = 'Wollbi Fest OK'
-SITENAME = 'Wollbi-Fescht 2023'
-SITESUBTITLE = 'Dieses Jahr am 12. August'
+AUTHOR = 'Wollbi Adventsfenster OK'
+SITENAME = 'Wollbi Adventsfenster 2023'
+SITESUBTITLE = 'Dieses Jahr wieder im Dezember'
 SITEURL = ''
-THEME_TEMPLATES_OVERRIDES = ['/Users/welker/Dev/wollbi.ch/newfest/fest.wollbi.ch/templateoverrides']
+THEME_TEMPLATES_OVERRIDES = ['/Users/welker/Dev/wollbi.ch/newfest/advent.wollbi.ch/templateoverrides']
 
 PATH = 'content'
 
