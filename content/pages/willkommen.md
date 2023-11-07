@@ -17,4 +17,4 @@ Ab dem 25. November wird auf diese Seite das Programm veröffentlicht.
 
 Wir freuen uns auf eine gemütliche Adventszeit.
 
-Kathrin (W4), Andrea (W7), Sina & Jan (W9) & Benj (W42)
+Kathrin (W4), Andrea (W7), Sina & Jan (W9) und Benj (W42)
