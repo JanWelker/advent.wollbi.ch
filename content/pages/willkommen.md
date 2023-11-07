@@ -16,4 +16,5 @@ Ab dem 25. November wird auf diese Seite das Programm veröffentlicht.
 ![Flyer]({static}/images/flyer.jpeg)
 
 Wir freuen uns auf eine gemütliche Adventszeit.
+
 Andrea (W7), Sina & Jan (W9)
