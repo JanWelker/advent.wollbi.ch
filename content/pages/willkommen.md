@@ -23,8 +23,8 @@ Wer möchte kann den Zuschauerinnen und Zuschauern ein warmes Getränk und etwas
 | 15.12.2023 | W 20       | Alexandra & Simian           |
 | 16.12.2023 | K 66       | Katrin, Thomas, Emma & Frida |
 | 17.12.2023 | W 45       | Simone & Adrian              |
-| 20.12.2023 | W 7        | Andrea & Oliver              |
 | 18.12.2023 | W 38       | Monica & Peter               |
+| 20.12.2023 | W 7        | Andrea & Oliver              |
 | 21.12.2023 | W 4        | Kathrin & Matthias + W25     |
 
 
