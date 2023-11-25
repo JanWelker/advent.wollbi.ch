@@ -27,7 +27,6 @@ Wer möchte kann den Zuschauerinnen und Zuschauern ein warmes Getränk und etwas
 | 29.12.2023 | W 7        | Andrea & Oliver              |
 | 21.12.2023 | W 4        | Kathrin & Matthias + W25     |
 
-#![Flyer]({static}/images/flyer.jpeg)
 
 Wir freuen uns auf eine gemütliche Adventszeit.
 
