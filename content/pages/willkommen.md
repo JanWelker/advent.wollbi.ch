@@ -7,6 +7,7 @@ Wir freuen uns auf die Adventsfenster an der Wollbi!
 Wir treffen uns von Montag bis Freitag jeweils um 19.00 Uhr und am Wochenende schon etwas früher um 17.00 Uhr.
 Wer möchte kann den Zuschauerinnen und Zuschauern ein warmes Getränk und etwas zu knabbern anbieten.
 
+![Advent Apero]({static}/images/advent_apero.jpg)
 
 | Datum      | Hausnummer | Gastgeber                    |
 |------------|------------|------------------------------|
