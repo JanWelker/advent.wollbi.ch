@@ -25,8 +25,7 @@ Wer möchte kann den Zuschauerinnen und Zuschauern ein warmes Getränk und etwas
 | 17.12.2023 | W 45       | Simone & Adrian              |
 | 18.12.2023 | W 38       | Monica & Peter               |
 | 20.12.2023 | W 7        | Andrea & Oliver              |
-| 21.12.2023 | W 4        | Kathrin & Matthias + W25     |
-
+| 21.12.2023 | W 4        | Kathrin, Katrin, Matthias & Dino |
 
 Wir freuen uns auf eine gemütliche Adventszeit.
 
