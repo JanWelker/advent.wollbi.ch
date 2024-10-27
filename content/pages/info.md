@@ -1,12 +1,11 @@
 Title: Info
-Date: 2023-06-14 20:00
+Date: 2024-10-27 20:00
 page_order: 002
 
 Im OK der diesjährigen Ausgabe sind:
 
-* W4: Kathrin
 * W7: Andrea
-* W9: Sina & Jan
+* W9: Sina
 * W42: Benj
 
 Anregungen und Fragen können gerne an [advent@wollbi.ch](mailto:advent@wollbi.ch) gesendet werden.
