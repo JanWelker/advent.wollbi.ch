@@ -6,12 +6,9 @@ page_order: 001
 Wir freuen uns auf die Adventsfenster an der Wollbi!
 Wir treffen uns von Montag bis Freitag jeweils um 19.00 Uhr und am Wochenende schon etwas früher um 17.00 Uhr.
 
-Wenn du die Adventsfenster direkt in deinen Kalender eintragen mochtest findest du das Programm hier:
+Wenn du die Termine der Adventsfenster direkt in deinen Kalender eintragen mochtest, findest du die Agenda hier: [Agenda als iCAL herunterladen]({static}/images/advent_2024.ics)
 
-* [Agenda als iCAL]({static}/images/advent_2024.ics)
-* [Agenda als pdf]({static}/images/advent_2024.ics)
-
-![Agenda]({static}/images/Programm_Adventsfenster_2024.pdf)
+<center>![Agenda]({static}/images/Programm_Adventsfenster_2024.pdf)</center>
 
 Wir freuen uns auf eine gemütliche Adventszeit.
 
