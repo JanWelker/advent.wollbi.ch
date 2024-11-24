@@ -1,18 +1,17 @@
-Title: Anmeldung eröffnet!
-Date: 2024-10-27 16:00
+Title: Daten fur 2024 stehen fest!
+Date: 2024-11-24 17:00
 save_as: index.html
 page_order: 001
 
 Wir freuen uns auf die Adventsfenster an der Wollbi!
 Wir treffen uns von Montag bis Freitag jeweils um 19.00 Uhr und am Wochenende schon etwas früher um 17.00 Uhr.
 
-Wer ein Fenster enthüllen möchte, kann in dieser [Liste](https://xoyondo.com/dp/4pq09eu8636dvow) einen Termin auswählen.
+Wenn du die Adventsfenster direkt in deinen Kalender eintragen mochtest findest du das Programm hier:
 
-Merci fürs Ausfüllen bis zum 22 November.
+* [Agenda als iCAL]({static}/images/advent_2024.ics)
+* [Agenda als pdf]({static}/images/advent_2024.ics)
 
-Ab dem 29. November wird auf diese Seite das Programm veröffentlicht.
-
-![Flyer]({static}/images/flyer_2024.jpeg)
+![Agenda]({static}/images/Programm_Adventsfenster_2024.pdf)
 
 Wir freuen uns auf eine gemütliche Adventszeit.
 
