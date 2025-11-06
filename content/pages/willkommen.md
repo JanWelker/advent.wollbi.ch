@@ -1,15 +1,20 @@
-Title: Daten für 2024 stehen fest!
-Date: 2024-11-24 17:00
+Title: Daten für 2025 stehen fest!
+Date: 2025-11-05 20:00
 save_as: index.html
 page_order: 001
 
-Wir freuen uns auf die Adventsfenster an der Wollbi!
+Liebe Nachbarinnen und Nachbarn
+
+Die Adventszeit steht vor der Tür und mit ihr die wunderbare Tradition unserer Adventsfenster an der Wollbi.
+
+Wir laden euch herzlich ein, Teil dieser besinnlichen Zeit zu werden und einen Abend mit einem Apéro für die Nachbarschaft zu gestalten. Ob ihr dazu ein festlich geschmücktes Fenster öffnet, Laternen aufhängt, Musik spielt oder einfach nur mit warmem Punsch und Plätzchen für gemütliche Stimmung sorgt, jeder Beitrag macht unsere Adventszeit zu etwas Besonderem.
+
+## Einen Tag reservieren
+
+Möchtet ihr an einem Abend Gastgeber sein? Auf unserer [Reservationsseite](https://xoyondo.com/dp/m1g9h7gi0juz5d4) könnt ihr euch ganz einfach einen Tag aussuchen und eintragen. Noch sind viele Termine frei!
+
 Wir treffen uns von Montag bis Freitag jeweils um 19.00 Uhr und am Wochenende schon etwas früher um 17.00 Uhr.
 
-Wenn du die Termine der Adventsfenster direkt in deinen Kalender eintragen möchtest, findest du die Agenda hier: [Agenda als iCAL herunterladen]({static}/images/advent_2024.ics) [Agenda als PDF herunterladen]({static}/images/Programm_Adventsfenster_2024.pdf)
+Wir freuen uns auf eine wunderbare Adventszeit mit euch!
 
-
-<center>![Agenda]({static}/images/Programm_Adventsfenster_2024.pdf)</center>
-
-
-Benj (W42), Andrea (W7) und Sina (W9)
+Benj (W42), Andrea (W7), Jan & Sina (W9)
