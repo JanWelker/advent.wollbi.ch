@@ -1,4 +1,4 @@
-Title: Macht mit bei unseren Adventsfenstern 2025
+Title: Macht mit bei unseren Adventsfenstern
 Date: 2025-11-05 20:00
 save_as: index.html
 page_order: 001

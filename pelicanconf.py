@@ -1,5 +1,5 @@
 AUTHOR = 'Wollbi Adventsfenster OK'
-SITENAME = 'Wollbi Adventsfenster 2024'
+SITENAME = 'Wollbi Adventsfenster 2025'
 SITESUBTITLE = 'Dieses Jahr wieder im Dezember'
 SITEURL = ''
 THEME_TEMPLATES_OVERRIDES = ['/Users/welker/Dev/wollbi.ch/newfest/advent.wollbi.ch/templateoverrides']
