@@ -7,6 +7,7 @@
         <meta name="generator" content="Pelican" />
         <title>{% block title %}{{ SITENAME }}{%endblock%}</title>
         <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/{{ CSS_FILE }}" />
+        <link rel="stylesheet" href="{{ SITEURL }}/christmas.css" />
         {% if FEED_ALL_ATOM %}
         <link href="{{ FEED_DOMAIN }}/{% if FEED_ALL_ATOM_URL %}{{ FEED_ALL_ATOM_URL }}{% else %}{{ FEED_ALL_ATOM }}{% endif %}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Atom Feed" />
         {% endif %}
@@ -14,10 +15,35 @@
         <link href="{{ FEED_DOMAIN }}/{% if FEED_ALL_RSS_URL %}{{ FEED_ALL_RSS_URL }}{% else %}{{ FEED_ALL_RSS }}{% endif %}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} RSS Feed" />
         {% endif %}
         {% block extra_head %}{% endblock extra_head %}
+        <style>
+            /* Additional snowflakes */
+            .snowflake {
+                position: fixed;
+                top: -10px;
+                z-index: 9999;
+                color: #fff;
+                font-size: 1.5em;
+                opacity: 0.8;
+                pointer-events: none;
+                animation: fall linear infinite;
+            }
+            @keyframes fall {
+                to { transform: translateY(100vh); }
+            }
+        </style>
         {% endblock head %}
 </head>
 
 <body id="index" class="home">
+        <!-- Snowflakes overlay -->
+        <div class="snowflake" style="left: 20%; animation-duration: 10s; animation-delay: 0s;">❄</div>
+        <div class="snowflake" style="left: 40%; animation-duration: 12s; animation-delay: 2s;">❄</div>
+        <div class="snowflake" style="left: 60%; animation-duration: 15s; animation-delay: 4s;">❄</div>
+        <div class="snowflake" style="left: 80%; animation-duration: 11s; animation-delay: 1s;">❄</div>
+        <div class="snowflake" style="left: 30%; animation-duration: 13s; animation-delay: 3s;">❄</div>
+        <div class="snowflake" style="left: 70%; animation-duration: 14s; animation-delay: 5s;">❄</div>
+        <div class="snowflake" style="left: 50%; animation-duration: 16s; animation-delay: 0s;">❄</div>
+        <div class="snowflake" style="left: 90%; animation-duration: 9s; animation-delay: 2s;">❄</div>
 {% include 'github.html' %}
         <header id="banner" class="body">
                 <h1><a href="{{ SITEURL }}/">{{ SITENAME }}{% if SITESUBTITLE %} <strong>{{ SITESUBTITLE }}</strong>{% endif %}</a></h1>

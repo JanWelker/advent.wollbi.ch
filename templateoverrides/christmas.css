@@ -1,0 +1,226 @@
+/* Christmas Theme Overrides */
+
+/* Animated snowflakes */
+@keyframes snowfall {
+    0% {
+        transform: translateY(-10vh) translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) translateX(100px);
+        opacity: 0.3;
+    }
+}
+
+@keyframes snowfall2 {
+    0% {
+        transform: translateY(-10vh) translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) translateX(-100px);
+        opacity: 0.3;
+    }
+}
+
+/* Snowflake container */
+body::before,
+body::after {
+    content: '❄';
+    position: fixed;
+    top: -10vh;
+    color: #fff;
+    font-size: 2em;
+    opacity: 0.7;
+    pointer-events: none;
+    z-index: 9999;
+    animation: snowfall 10s linear infinite;
+}
+
+body::before {
+    left: 10%;
+    animation-delay: 0s;
+}
+
+body::after {
+    left: 80%;
+    animation: snowfall2 12s linear infinite;
+    animation-delay: 2s;
+}
+
+/* Christmas color scheme */
+body {
+    background: linear-gradient(180deg, #0f2027 0%, #203a43 50%, #2c5364 100%) !important;
+    background-attachment: fixed !important;
+}
+
+/* Header with festive colors */
+#banner {
+    background: linear-gradient(135deg, #165b33 0%, #2d8659 50%, #165b33 100%);
+    padding: 1.5em 1em !important;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+    border: 3px solid #d4af37;
+    position: relative;
+    margin-bottom: 1.5em !important;
+}
+
+#banner::before {
+    content: '🎄';
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    font-size: 3em;
+    opacity: 0.7;
+}
+
+#banner::after {
+    content: '🎁';
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 3em;
+    opacity: 0.7;
+}
+
+#banner h1 a:link, #banner h1 a:visited {
+    color: #fff !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#banner h1 a:hover, #banner h1 a:active {
+    color: #ffd700 !important;
+}
+
+#banner h1 strong {
+    color: #ffe4b5 !important;
+}
+
+/* Navigation with Christmas colors */
+#banner nav {
+    background: linear-gradient(90deg, #8b0000 0%, #dc143c 50%, #8b0000 100%) !important;
+    border: 2px solid #ffd700;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+#banner nav a:link, #banner nav a:visited {
+    color: #fff !important;
+}
+
+#banner nav a:hover, #banner nav a:active,
+#banner nav .active a:link, #banner nav .active a:visited {
+    background: #165b33 !important;
+    color: #ffd700 !important;
+}
+
+/* Content boxes with Christmas styling */
+#featured, #content {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: 3px solid #dc143c;
+    box-shadow: 0 5px 25px rgba(220, 20, 60, 0.4);
+    position: relative;
+}
+
+#featured::before, #content::before {
+    content: '⭐';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2em;
+    background: #fff;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+/* Heading colors */
+h1, h2, h3, h4, h5, h6 {
+    color: #165b33 !important;
+}
+
+#featured h2, #featured h3,
+#extras h2 {
+    color: #dc143c !important;
+}
+
+/* Links with Christmas colors */
+a:link, a:visited {
+    color: #165b33 !important;
+}
+
+a:hover, a:active {
+    background-color: #dc143c !important;
+    color: #fff !important;
+}
+
+/* Footer with festive styling */
+#contentinfo {
+    background: rgba(22, 91, 51, 0.9);
+    padding: 1.5em !important;
+    border-radius: 10px;
+    color: #fff !important;
+    border: 2px solid #ffd700;
+    text-align: center !important;
+}
+
+#contentinfo a {
+    color: #ffd700 !important;
+}
+
+#contentinfo a:hover {
+    color: #fff !important;
+    background: transparent !important;
+    text-decoration: underline !important;
+}
+
+/* Add decorative elements */
+.body {
+    position: relative;
+}
+
+/* Christmas lights effect */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+#banner nav::before,
+#banner nav::after {
+    content: '✨';
+    position: absolute;
+    top: 5px;
+    font-size: 1.2em;
+    animation: blink 2s infinite;
+}
+
+#banner nav::before {
+    left: 10px;
+    animation-delay: 0s;
+}
+
+#banner nav::after {
+    right: 10px;
+    animation-delay: 1s;
+}
+
+/* Make navigation position relative for pseudo-elements */
+#banner nav {
+    position: relative;
+}
+
+/* Add holly decoration to featured content */
+#featured h2::before {
+    content: '🎅 ';
+}
+
+#featured h2::after {
+    content: ' 🎅';
+}
+
+/* Festive horizontal rules */
+hr {
+    border: 2px solid #dc143c !important;
+    background: linear-gradient(90deg, transparent 0%, #ffd700 50%, transparent 100%);
+    height: 3px;
+    border: 0;
+}
