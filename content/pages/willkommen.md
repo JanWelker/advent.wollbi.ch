@@ -1,20 +1,19 @@
 Title: Macht mit bei unseren Adventsfenstern
-Date: 2025-11-05 20:00
+Date: 2025-11-24 21:00
 save_as: index.html
 page_order: 001
 
 Liebe Nachbarinnen und Nachbarn
 
-Die Adventszeit steht vor der Tür und mit ihr die wunderbare Tradition unserer Adventsfenster an der Wollbi.
+Wir laden euch herzlich zu unseren Adventsfenstern ein! Alle sind willkommen, mit uns die Adventszeit zu geniessen und gemeinsam schöne Momente zu erleben.
 
-![Logo]({static}/images/logo.png)
+Im Flyer findet ihr die Termine unserer Apéros während der Adventszeit.
 
-Wir laden euch herzlich ein, Teil dieser besinnlichen Zeit zu werden und einen Abend mit einem Apéro für die Nachbarschaft zu gestalten. Ob ihr dazu ein festlich geschmücktes Fenster öffnet, Laternen aufhängt, Musik spielt oder einfach nur mit warmem Punsch und Plätzchen für gemütliche Stimmung sorgt, jeder Beitrag macht unsere Adventszeit zu etwas Besonderem.
+<iframe src="{static}/images/flyer_2025.pdf" width="100%" height="800px" style="border: none;">
+    <p>Dein Browser unterstützt keine eingebetteten PDFs. <a href="{static}/images/flyer_2025.pdf">Hier herunterladen</a>.</p>
+</iframe>
 
-## Einen Tag reservieren
-Möchtet ihr an einem Abend Gastgeber sein? Auf unserer [Reservationsseite](https://xoyondo.com/dp/m1g9h7gi0juz5d4) könnt ihr euch ganz einfach einen Tag aussuchen und eintragen. Noch sind viele Termine frei!
-
-Wir treffen uns von Montag bis Freitag jeweils um 19.00 Uhr und am Wochenende schon etwas früher um 17.00 Uhr.
+[Programm als Kalenderdatei herunterladen]({static}/images/advent_2025.ics)
 
 Wir freuen uns auf eine wunderbare Adventszeit mit euch!
 
