@@ -1,4 +1,4 @@
-Title: Macht mit bei unseren Adventsfenstern
+Title: Herzlich willkommen zu unseren Adventsfenstern
 Date: 2025-11-24 21:00
 save_as: index.html
 page_order: 001
@@ -9,9 +9,9 @@ Wir laden euch herzlich zu unseren Adventsfenstern ein! Alle sind willkommen, mi
 
 Im Flyer findet ihr die Termine unserer Apéros während der Adventszeit.
 
-<iframe src="{static}/images/flyer_2025.pdf" width="100%" height="800px" style="border: none;">
-    <p>Dein Browser unterstützt keine eingebetteten PDFs. <a href="{static}/images/flyer_2025.pdf">Hier herunterladen</a>.</p>
-</iframe>
+![Flyer Adventsfenster 2025]({static}/images/flyer_2025.pdf)
+
+[Flyer als PDF herunterladen]({static}/images/flyer_2025.pdf)
 
 [Programm als Kalenderdatei herunterladen]({static}/images/advent_2025.ics)
 
