@@ -9,9 +9,7 @@ Wir laden euch herzlich zu unseren Adventsfenstern ein! Alle sind willkommen, mi
 
 Im Flyer findet ihr die Termine unserer Apéros während der Adventszeit.
 
-<object data="{static}/images/flyer_2025.pdf" type="application/pdf" width="100%">
-    <p>Ihr Browser kann das PDF nicht direkt anzeigen. Klicken Sie <a href="{static}/images/flyer_2025.pdf">hier</a>, um es herunterzuladen.</p>
-</object>
+![Flyer als PDF herunterladen]({static}/images/flyer_2025.png)
 
 [Flyer als PDF herunterladen]({static}/images/flyer_2025.pdf)
 
