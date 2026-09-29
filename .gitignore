@@ -1,3 +1,18 @@
-__pycache__
+# dependencies
+/node_modules
+
+# next.js
+/.next/
+/out/
+next-env.d.ts
+*.tsbuildinfo
+
+# uploads live on a volume, never in the repository
+/media
+
+# local env
+.env
+.env*.local
+
+# macOS
 .DS_Store
-*/.DS_Store
