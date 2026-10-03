@@ -1,6 +1,6 @@
 import type { CollectionConfig } from 'payload'
 
-import { Download, Gallery, Prose } from '../blocks'
+import { ArchiveTeaser, Callout, Download, Gallery, Prose, Team, Windows } from '../blocks'
 
 // One page per Pelican page. `slug: 'home'` is served at /, everything else
 // at /<slug>; `order` is what page_order was.
@@ -33,7 +33,7 @@ export const Pages: CollectionConfig = {
       name: 'layout',
       type: 'blocks',
       label: 'Inhalt',
-      blocks: [Prose, Gallery, Download],
+      blocks: [Prose, Windows, Callout, Team, Gallery, ArchiveTeaser, Download],
     },
   ],
 }

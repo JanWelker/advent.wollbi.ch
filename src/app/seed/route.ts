@@ -4,7 +4,7 @@ import path from 'path'
 import { getPayload } from 'payload'
 
 import { markdown } from '@/lib/lexical'
-import { admin, info, site, welcome } from './content'
+import { admin, archive, archiveIntro, cup, info, site, windows } from './content'
 
 export const dynamic = 'force-dynamic'
 export const maxDuration = 300
@@ -63,22 +63,24 @@ export const POST = async (request: Request) => {
   await payload.create({
     collection: 'pages',
     data: {
-      title: 'Herzlich willkommen zu unseren Adventsfenstern',
+      title: 'Die Wollbi leuchtet',
       slug: 'home',
       navLabel: 'Willkommen',
       order: 1,
       showInNav: true,
       layout: [
-        { blockType: 'prose', content: markdown(welcome.intro) },
-        { blockType: 'gallery', images: [{ image: media[welcome.flyerImage] }] },
-        ...welcome.downloads
-          .filter((entry) => media[entry.file])
-          .map((entry) => ({
-            blockType: 'download',
-            label: entry.label,
-            file: media[entry.file],
-          })),
-        { blockType: 'prose', content: markdown(welcome.closing) },
+        {
+          blockType: 'windows',
+          heading: 'Wann, wo, bei wem',
+          weekdayTime: '19:00',
+          weekendTime: '17:00',
+          calendar: media[windows.calendar],
+          flyer: media[windows.flyer],
+          entries: windows.entries,
+        },
+        { blockType: 'callout', title: cup.title, text: cup.text, image: media[cup.image] },
+        { blockType: 'team', heading: 'Euer OK' },
+        { blockType: 'archiveTeaser', heading: 'Frühere Jahre', archiveSlug: 'archiv', count: 3 },
       ],
     } as never,
   })
@@ -91,9 +93,33 @@ export const POST = async (request: Request) => {
       navLabel: 'Info',
       order: 2,
       showInNav: true,
-      layout: [{ blockType: 'prose', content: markdown(info) }],
+      layout: [
+        { blockType: 'team', heading: 'Im OK der diesjährigen Ausgabe' },
+        { blockType: 'prose', content: markdown(info) },
+      ],
     } as never,
   })
 
-  return Response.json({ seeded: true, media: Object.keys(media).length, pages: 2 })
+  await payload.create({
+    collection: 'pages',
+    data: {
+      title: 'Archiv',
+      slug: 'archiv',
+      navLabel: 'Archiv',
+      order: 3,
+      showInNav: true,
+      layout: [
+        { blockType: 'prose', content: markdown(archiveIntro) },
+        ...archive
+          .filter(([, file]) => media[file])
+          .map(([year, file]) => ({
+            blockType: 'gallery',
+            heading: year,
+            images: [{ image: media[file] }],
+          })),
+      ],
+    } as never,
+  })
+
+  return Response.json({ seeded: true, media: Object.keys(media).length, pages: 3 })
 }
