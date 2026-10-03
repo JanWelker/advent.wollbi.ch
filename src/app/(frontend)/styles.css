@@ -1,0 +1,171 @@
+/* The Pelican site had a Christmas skin over the Smashing Magazine theme:
+   a deep blue-green gradient, a green banner and falling snow. This keeps
+   all three and drops the !important that made it a skin. */
+
+:root {
+  --ink: #f2f6f8;
+  --muted: #b6c6cd;
+  --accent: #f3d27a;
+  --green: #165b33;
+  --green-light: #2d8659;
+  --rule: rgba(255, 255, 255, 0.18);
+  --measure: 46rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0 1rem 4rem;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+  background-attachment: fixed;
+  color: var(--ink);
+  font: 1.05rem/1.7 Georgia, "Iowan Old Style", "Times New Roman", serif;
+}
+
+/* Falling snow. Decoration only, so it is hidden from assistive tech and
+   stands still for anyone who asked for less motion. */
+.snowflake {
+  position: fixed;
+  top: -10vh;
+  z-index: 1;
+  color: #fff;
+  font-size: 1.5rem;
+  opacity: 0.8;
+  pointer-events: none;
+  animation-name: snowfall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes snowfall {
+  to {
+    transform: translateY(115vh);
+    opacity: 0.3;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .snowflake {
+    display: none;
+  }
+}
+
+.banner {
+  position: relative;
+  z-index: 2;
+  max-width: var(--measure);
+  margin: 2rem auto 0;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  background: linear-gradient(135deg, var(--green) 0%, var(--green-light) 50%, var(--green) 100%);
+  box-shadow: 0 1px 0 var(--rule);
+}
+
+.brand {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.brand .name {
+  display: block;
+  font-size: 1.9rem;
+  font-weight: 700;
+}
+
+.brand .subtitle {
+  display: block;
+  color: var(--accent);
+  font-size: 1rem;
+}
+
+.banner nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.banner nav a {
+  color: var(--accent);
+  text-decoration: none;
+  font-family: system-ui, sans-serif;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.banner nav a:hover {
+  text-decoration: underline;
+}
+
+main {
+  position: relative;
+  z-index: 2;
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding-top: 1.5rem;
+}
+
+main h1 {
+  font-size: 1.8rem;
+  margin: 1.5rem 0;
+}
+
+main h2 {
+  margin-top: 2.5rem;
+  font-size: 1.3rem;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 0.3rem;
+}
+
+main a {
+  color: var(--accent);
+}
+
+.gallery .images {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1rem;
+  margin: 1rem 0 2rem;
+}
+
+.gallery img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.4rem;
+  background: #fff;
+}
+
+.download {
+  margin: 0.75rem 0;
+}
+
+.download a {
+  display: inline-block;
+  padding: 0.55rem 1rem;
+  border: 1px solid var(--accent);
+  border-radius: 0.3rem;
+  text-decoration: none;
+}
+
+.download a:hover {
+  background: var(--accent);
+  color: #12303a;
+}
+
+footer {
+  position: relative;
+  z-index: 2;
+  max-width: var(--measure);
+  margin: 3rem auto 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+  color: var(--muted);
+  font-family: system-ui, sans-serif;
+  font-size: 0.85rem;
+}
