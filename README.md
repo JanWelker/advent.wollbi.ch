@@ -9,8 +9,10 @@ Postgres and are edited at `/admin` rather than in Markdown in this repository.
 | Path | What |
 | --- | --- |
 | `src/collections/` | `pages`, `media`, `users` |
-| `src/globals/Site.ts` | Title, subtitle and footer — what `SITENAME` and `SITESUBTITLE` were |
-| `src/blocks/` | The three shapes the old pages had: prose, a run of images, a download |
+| `src/globals/Site.ts` | Title, subtitle, invitation, contact address, the OK and the footer |
+| `src/blocks/` | What a page is made of: the year's windows, a callout, the OK, the archive teaser, and the old prose, images and download |
+| `src/components/` | The night street, the hero and the block renderer |
+| `src/lib/windows.ts` | Weekday, time and date range, derived from each window's date |
 | `src/app/(frontend)/Snow.tsx` | The eight falling snowflakes the Pelican template drew inline |
 | `src/app/(frontend)/` | The public site |
 | `src/app/seed/` | The one-shot import of the Pelican content, and the content itself |
@@ -37,7 +39,7 @@ container run -d --name adventpg -p 5432:5432 \
 
 The seed runs once, against an empty database, and does three things: creates
 the first editor from `SEED_ADMIN_EMAIL` and `SEED_ADMIN_PASSWORD`, imports
-every file in `public/seed/images/` as media, and creates the two pages.
+every file in `public/seed/images/` as media, and creates the three pages.
 
 ```bash
 curl -X POST -H "x-seed-token: $PAYLOAD_SECRET" http://localhost:3000/seed

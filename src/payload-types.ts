@@ -161,6 +161,53 @@ export interface Page {
           }
         | {
             heading?: string | null;
+            weekdayTime?: string | null;
+            weekendTime?: string | null;
+            calendar?: (number | null) | Media;
+            flyer?: (number | null) | Media;
+            entries?:
+              | {
+                  date: string;
+                  names: string;
+                  /**
+                   * z. B. W43
+                   */
+                  house: string;
+                  /**
+                   * z. B. «ohne Apéro»
+                   */
+                  note?: string | null;
+                  /**
+                   * Nur wenn es nicht die übliche Zeit für diesen Wochentag ist.
+                   */
+                  time?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'windows';
+          }
+        | {
+            title: string;
+            text?: string | null;
+            image?: (number | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'callout';
+          }
+        | {
+            heading?: string | null;
+            /**
+             * Die Personen selbst stehen unter Website → OK.
+             */
+            note?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'team';
+          }
+        | {
+            heading?: string | null;
             images?:
               | {
                   image: number | Media;
@@ -170,6 +217,14 @@ export interface Page {
             id?: string | null;
             blockName?: string | null;
             blockType: 'gallery';
+          }
+        | {
+            heading?: string | null;
+            archiveSlug?: string | null;
+            count?: number | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'archiveTeaser';
           }
         | {
             label: string;
@@ -327,6 +382,44 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        windows?:
+          | T
+          | {
+              heading?: T;
+              weekdayTime?: T;
+              weekendTime?: T;
+              calendar?: T;
+              flyer?: T;
+              entries?:
+                | T
+                | {
+                    date?: T;
+                    names?: T;
+                    house?: T;
+                    note?: T;
+                    time?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        callout?:
+          | T
+          | {
+              title?: T;
+              text?: T;
+              image?: T;
+              id?: T;
+              blockName?: T;
+            };
+        team?:
+          | T
+          | {
+              heading?: T;
+              note?: T;
+              id?: T;
+              blockName?: T;
+            };
         gallery?:
           | T
           | {
@@ -337,6 +430,15 @@ export interface PagesSelect<T extends boolean = true> {
                     image?: T;
                     id?: T;
                   };
+              id?: T;
+              blockName?: T;
+            };
+        archiveTeaser?:
+          | T
+          | {
+              heading?: T;
+              archiveSlug?: T;
+              count?: T;
               id?: T;
               blockName?: T;
             };
@@ -441,7 +543,25 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 export interface Site {
   id: number;
   name: string;
+  /**
+   * Steht in der Fusszeile.
+   */
   subtitle?: string | null;
+  /**
+   * Der Satz unter der Überschrift der Startseite.
+   */
+  intro?: string | null;
+  email?: string | null;
+  team?:
+    | {
+        /**
+         * z. B. W7
+         */
+        house: string;
+        names: string;
+        id?: string | null;
+      }[]
+    | null;
   footer?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -453,6 +573,15 @@ export interface Site {
 export interface SiteSelect<T extends boolean = true> {
   name?: T;
   subtitle?: T;
+  intro?: T;
+  email?: T;
+  team?:
+    | T
+    | {
+        house?: T;
+        names?: T;
+        id?: T;
+      };
   footer?: T;
   updatedAt?: T;
   createdAt?: T;

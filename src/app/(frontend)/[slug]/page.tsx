@@ -11,19 +11,19 @@ export const dynamic = 'force-dynamic'
 export default async function ContentPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const payload = await getPayload({ config: await config })
-  const found = await payload.find({
-    collection: 'pages',
-    where: { slug: { equals: slug } },
-    depth: 2,
-    limit: 1,
-  })
+  const [found, site] = await Promise.all([
+    payload.find({ collection: 'pages', where: { slug: { equals: slug } }, depth: 2, limit: 1 }),
+    payload.findGlobal({ slug: 'site' }),
+  ])
   const page = found.docs[0]
   if (!page || page.slug === 'home') notFound()
 
   return (
     <>
-      <h1>{page.title}</h1>
-      <PageBody layout={page.layout as never} />
+      <header className="page-header wrap">
+        <h1>{page.title}</h1>
+      </header>
+      <PageBody layout={page.layout as never} site={site} />
     </>
   )
 }

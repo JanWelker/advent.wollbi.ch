@@ -1,41 +1,110 @@
-/* The Pelican site had a Christmas skin over the Smashing Magazine theme:
-   a deep blue-green gradient, a green banner and falling snow. This keeps
-   all three and drops the !important that made it a skin. */
+/* Strasse bei Nacht: the Wollbacherstrasse after dark, one lit window per
+   evening. Night blue for the sky, a warm window glow as the one accent, and
+   snow white where the list is read. Sister of the Wollbi-Fescht's Fähnli
+   design: the same body font, the same page shape. */
 
 :root {
-  --ink: #f2f6f8;
-  --muted: #b6c6cd;
-  --accent: #f3d27a;
-  --green: #165b33;
-  --green-light: #2d8659;
-  --rule: rgba(255, 255, 255, 0.18);
-  --measure: 46rem;
+  --night: #0f1b30;
+  --night-line: #2b3d63;
+  --moon: #f4eedf;
+  --haze: #c5d0e2;
+  --glow: #ffc24b;
+  --glow-soft: rgba(255, 194, 75, 0.45);
+  --snow: #eef3f8;
+  --snow-line: #c9d4e2;
+  --slate: #5a6b85;
+  --paper: #fbf5e8;
+  --paper-ink: #34425a;
+  --display: var(--font-display), 'Trebuchet MS', sans-serif;
+  --body: var(--font-body), system-ui, sans-serif;
+  --max: 72rem;
+  --gutter: clamp(1rem, 4vw, 4rem);
 }
 
 * {
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  padding: 0 1rem 4rem;
-  min-height: 100vh;
-  background: linear-gradient(180deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
-  background-attachment: fixed;
-  color: var(--ink);
-  font: 1.05rem/1.7 Georgia, "Iowan Old Style", "Times New Roman", serif;
+html {
+  scroll-behavior: smooth;
 }
 
-/* Falling snow. Decoration only, so it is hidden from assistive tech and
-   stands still for anyone who asked for less motion. */
-.snowflake {
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--night);
+  color: var(--moon);
+  font: 1.125rem/1.6 var(--body);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--glow);
+}
+
+a:hover {
+  color: #ffdd8f;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--display);
+  font-weight: 600;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.wrap {
+  width: 100%;
+  max-width: calc(var(--max) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.skip {
+  position: absolute;
+  left: -999px;
+  top: 0.5rem;
+  z-index: 10;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background: var(--glow);
+  color: var(--night);
+}
+
+.skip:focus {
+  left: 0.5rem;
+}
+
+/* Falling snow over the night sky. It sits behind the content, so it
+   disappears behind the snow-white sections instead of across the text. */
+.snow {
   position: fixed;
-  top: -10vh;
-  z-index: 1;
-  color: #fff;
-  font-size: 1.5rem;
-  opacity: 0.8;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
   pointer-events: none;
+}
+
+.snowflake {
+  position: absolute;
+  top: -2vh;
+  border-radius: 50%;
+  background: #dce6f2;
+  opacity: 0.7;
   animation-name: snowfall;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
@@ -43,8 +112,8 @@ body {
 
 @keyframes snowfall {
   to {
-    transform: translateY(115vh);
-    opacity: 0.3;
+    transform: translateY(104vh);
+    opacity: 0.25;
   }
 }
 
@@ -54,118 +123,582 @@ body {
   }
 }
 
-.banner {
+.site-header,
+main,
+.site-footer {
   position: relative;
-  z-index: 2;
-  max-width: var(--measure);
-  margin: 2rem auto 0;
-  padding: 1.5rem;
-  border-radius: 0.5rem;
-  background: linear-gradient(135deg, var(--green) 0%, var(--green-light) 50%, var(--green) 100%);
-  box-shadow: 0 1px 0 var(--rule);
-}
-
-.brand {
-  display: block;
-  color: inherit;
-  text-decoration: none;
-}
-
-.brand .name {
-  display: block;
-  font-size: 1.9rem;
-  font-weight: 700;
-}
-
-.brand .subtitle {
-  display: block;
-  color: var(--accent);
-  font-size: 1rem;
-}
-
-.banner nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.25rem;
-  margin-top: 1rem;
-}
-
-.banner nav a {
-  color: var(--accent);
-  text-decoration: none;
-  font-family: system-ui, sans-serif;
-  font-size: 0.95rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
-.banner nav a:hover {
-  text-decoration: underline;
+  z-index: 1;
 }
 
 main {
-  position: relative;
-  z-index: 2;
-  max-width: var(--measure);
-  margin: 0 auto;
+  flex-grow: 1;
+}
+
+/* Navigation */
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem 2rem;
   padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 }
 
-main h1 {
-  font-size: 1.8rem;
-  margin: 1.5rem 0;
-}
-
-main h2 {
-  margin-top: 2.5rem;
-  font-size: 1.3rem;
-  border-bottom: 1px solid var(--rule);
-  padding-bottom: 0.3rem;
-}
-
-main a {
-  color: var(--accent);
-}
-
-.gallery .images {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-  gap: 1rem;
-  margin: 1rem 0 2rem;
-}
-
-.gallery img {
-  width: 100%;
-  height: auto;
-  border-radius: 0.4rem;
-  background: #fff;
-}
-
-.download {
-  margin: 0.75rem 0;
-}
-
-.download a {
-  display: inline-block;
-  padding: 0.55rem 1rem;
-  border: 1px solid var(--accent);
-  border-radius: 0.3rem;
+.brand {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 1.75rem;
+  color: var(--moon);
   text-decoration: none;
 }
 
-.download a:hover {
-  background: var(--accent);
-  color: #12303a;
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-footer {
-  position: relative;
-  z-index: 2;
-  max-width: var(--measure);
-  margin: 3rem auto 0;
-  padding-top: 1rem;
-  border-top: 1px solid var(--rule);
-  color: var(--muted);
-  font-family: system-ui, sans-serif;
-  font-size: 0.85rem;
+.nav-links a {
+  display: inline-block;
+  padding: 0.5rem 0 0.25rem;
+  border-bottom: 4px solid transparent;
+  color: var(--moon);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.nav-links a:hover,
+.nav-links a[aria-current='page'] {
+  border-bottom-color: var(--glow);
+}
+
+/* Buttons */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 3rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  border: 2px solid var(--night);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.button-primary {
+  background: var(--night);
+  color: var(--moon);
+}
+
+.button-primary:hover {
+  background: var(--night-line);
+  color: var(--moon);
+}
+
+.button-secondary {
+  background: transparent;
+  color: var(--night);
+}
+
+.button-secondary:hover {
+  background: var(--night);
+  color: var(--moon);
+}
+
+/* On the night background a secondary button is outlined in moonlight. */
+main > .wrap .button-secondary {
+  border-color: var(--moon);
+  color: var(--moon);
+}
+
+main > .wrap .button-secondary:hover {
+  background: var(--moon);
+  color: var(--night);
+}
+
+/* Hero */
+
+.hero {
+  padding-top: 2.5rem;
+}
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 3.5rem;
+  text-align: center;
+}
+
+.hero-date {
+  margin: 0;
+  color: var(--glow);
+  font-weight: 800;
+  font-size: 1.25rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.hero-title {
+  font-size: clamp(3rem, 9vw, 7.5rem);
+  line-height: 1;
+}
+
+.hero-intro {
+  max-width: 42rem;
+  margin: 0.5rem 0 0;
+  color: var(--haze);
+  font-size: 1.3rem;
+}
+
+/* The street. Houses stand on the snow line; the snow is the bottom of the
+   street's own background, so it runs edge to edge whatever the count. */
+
+.street {
+  --snow-depth: 3.75rem;
+  background: linear-gradient(to top, var(--snow) var(--snow-depth), transparent var(--snow-depth));
+  padding: 0 var(--gutter);
+}
+
+.houses {
+  display: grid;
+  grid-template-columns: repeat(var(--count), minmax(0, 5.5rem));
+  justify-content: center;
+  align-items: end;
+  margin: 0 auto;
+  padding: 0;
+  max-width: var(--max);
+  list-style: none;
+}
+
+.house {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 0.25rem;
+}
+
+.house-weekday {
+  margin-bottom: 0.5rem;
+  color: #9fb0cc;
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.house-roof {
+  width: 112%;
+  aspect-ratio: 96 / 34;
+  background: var(--roof);
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+.house-body {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: var(--height);
+  padding-top: 1.4rem;
+  background: var(--wall);
+}
+
+.house-window {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 55%;
+  height: 3.25rem;
+  border-radius: 4px;
+  background: var(--glow);
+  box-shadow: 0 0 30px 6px var(--glow-soft);
+  color: #3a2a0a;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 1.375rem;
+}
+
+.house-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--snow-depth);
+  color: var(--night);
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+/* On a phone thirteen houses are a skyline, not a table: the numbers go,
+   the windows stay lit, and the list below carries the details. */
+@media (max-width: 720px) {
+  .street {
+    --snow-depth: 1.5rem;
+  }
+
+  .house {
+    padding: 0 0.125rem;
+  }
+
+  .house-body {
+    height: calc(var(--height) * 0.5);
+    padding-top: 0.75rem;
+  }
+
+  .house-window {
+    height: 1.5rem;
+    font-size: 0;
+    box-shadow: 0 0 16px 3px var(--glow-soft);
+  }
+
+  .house-weekday,
+  .house-number {
+    font-size: 0;
+    margin: 0;
+  }
+}
+
+/* The list of evenings, on snow. */
+
+.windows {
+  padding: 2.5rem 0 4.5rem;
+  background: var(--snow);
+  color: var(--night);
+}
+
+.section-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem 2rem;
+  margin-bottom: 1.75rem;
+}
+
+.section-head h2 {
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.evenings {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 3rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.evening {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--snow-line);
+}
+
+.evening-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  width: 4rem;
+}
+
+.evening-day {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 2.5rem;
+  line-height: 1;
+}
+
+.evening-weekday {
+  color: var(--slate);
+  font-size: 0.875rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.evening-who {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.evening-names {
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.evening-note,
+.evening-time {
+  color: var(--slate);
+  font-size: 0.95rem;
+}
+
+.evening-where {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+
+.evening-house {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+@media (max-width: 720px) {
+  .evenings {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Callout: a warm card on the night, with its picture. */
+
+.callout {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  margin-top: 4.5rem;
+  padding: 2rem 3rem;
+  border-radius: 1.75rem;
+  background: var(--paper);
+  color: var(--night);
+}
+
+.callout-image {
+  width: 16rem;
+  flex-shrink: 0;
+  object-fit: contain;
+  /* The illustration is drawn on white; multiply lets the card show through. */
+  mix-blend-mode: multiply;
+}
+
+.callout h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.callout p {
+  margin: 0.75rem 0 0;
+  color: var(--paper-ink);
+  font-size: 1.25rem;
+}
+
+@media (max-width: 720px) {
+  .callout {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+
+  .callout-image {
+    width: 10rem;
+  }
+}
+
+/* OK and archive */
+
+.pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: 3.5rem;
+}
+
+.pair,
+.team,
+.archive-teaser {
+  margin-top: 4.5rem;
+}
+
+.page-header + .wrap > .team {
+  margin-top: 1rem;
+}
+
+.pair .team,
+.pair .archive-teaser {
+  margin-top: 0;
+}
+
+.team h2,
+.archive-teaser h2 {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+}
+
+.archive-teaser .section-head {
+  align-items: baseline;
+  margin-bottom: 1.25rem;
+}
+
+.more {
+  font-weight: 800;
+}
+
+.team-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  margin: 1.25rem 0;
+  padding: 0;
+  list-style: none;
+  font-size: 1.25rem;
+}
+
+.team-list li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.house-tag {
+  display: inline-block;
+  width: 3.75rem;
+  padding: 0.25rem 0;
+  border-radius: 0.5rem;
+  background: var(--glow);
+  color: var(--night);
+  font-family: var(--display);
+  font-weight: 600;
+  text-align: center;
+}
+
+.lead {
+  margin: 0;
+  color: var(--haze);
+}
+
+.flyers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.flyer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  width: 10.5rem;
+  margin: 0;
+}
+
+.flyer img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 170 / 240;
+  object-fit: cover;
+  border: 3px solid var(--night-line);
+  border-radius: 0.5rem;
+}
+
+.flyer figcaption {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.flyers-wall {
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.flyers-wall .flyer {
+  width: 14rem;
+}
+
+@media (max-width: 720px) {
+  .pair {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 3rem;
+  }
+
+  .flyers {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+
+  .flyers-wall {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .flyer,
+  .flyers-wall .flyer {
+    width: auto;
+  }
+}
+
+/* Inner pages */
+
+.page-header {
+  padding-top: 2.5rem;
+  padding-bottom: 1rem;
+}
+
+.page-header h1 {
+  font-size: clamp(2.75rem, 7vw, 5rem);
+}
+
+.prose > * {
+  max-width: 46rem;
+}
+
+.prose p,
+.prose li {
+  color: var(--haze);
+  font-size: 1.25rem;
+}
+
+.prose h2 {
+  margin-top: 2rem;
+  font-size: 2rem;
+}
+
+main > .prose,
+main > .wrap:has(> .button) {
+  margin-top: 1.5rem;
+}
+
+/* Footer */
+
+.site-footer {
+  margin-top: 5rem;
+  border-top: 1px solid var(--night-line);
+  color: var(--haze);
+  font-size: 1rem;
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem 2rem;
+  padding-top: 2rem;
+  padding-bottom: 2.5rem;
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-brand .brand {
+  font-size: 1.5rem;
 }
