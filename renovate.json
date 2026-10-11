@@ -2,5 +2,14 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "github>JanWelker/renovate-config"
+  ],
+  "packageRules": [
+    {
+      "description": "Payload declares graphql ^16 as a peer, and .npmrc's legacy-peer-deps would let a 17 install without complaint and break /api/graphql at runtime. Lift this when Payload's peer range includes 17.",
+      "matchPackageNames": [
+        "graphql"
+      ],
+      "allowedVersions": "<17"
+    }
   ]
 }
