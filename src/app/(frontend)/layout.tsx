@@ -1,4 +1,5 @@
 import { Fredoka, Nunito } from 'next/font/google'
+import Link from 'next/link'
 import { getPayload } from 'payload'
 import React from 'react'
 
@@ -53,9 +54,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <Snow />
         <header className="site-header">
           <nav className="nav wrap" aria-label="Hauptnavigation">
-            <a className="brand" href="/">
+            <Link className="brand" href="/">
               {name}
-            </a>
+            </Link>
             <NavLinks links={links} />
           </nav>
         </header>
