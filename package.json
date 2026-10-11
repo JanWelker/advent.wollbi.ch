@@ -1,7 +1,7 @@
 {
   "name": "advent-wollbi-ch",
   "version": "1.0.0",
-  "description": "Wollbi-Fescht \u2014 Payload CMS on Next.js",
+  "description": "Wollbi-Fescht — Payload CMS on Next.js",
   "license": "MIT",
   "private": true,
   "type": "module",
@@ -43,5 +43,9 @@
     "esbuild": true,
     "unrs-resolver": true,
     "sharp": true
+  },
+  "overrides": {
+    "undici": "7.29.1",
+    "source-map-js": "1.2.2"
   }
 }
