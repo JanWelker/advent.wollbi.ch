@@ -6,20 +6,19 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "cross-env NODE_OPTIONS=\"--no-deprecation --max-old-space-size=4096\" next build",
-    "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
-    "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
-    "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
-    "lint": "cross-env NODE_OPTIONS=--no-deprecation eslint .",
-    "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
-    "start": "cross-env NODE_OPTIONS=--no-deprecation next start"
+    "build": "NODE_OPTIONS=\"--no-deprecation --max-old-space-size=4096\" next build",
+    "dev": "NODE_OPTIONS=--no-deprecation next dev",
+    "generate:importmap": "NODE_OPTIONS=--no-deprecation payload generate:importmap",
+    "generate:types": "NODE_OPTIONS=--no-deprecation payload generate:types",
+    "lint": "NODE_OPTIONS=--no-deprecation eslint .",
+    "payload": "NODE_OPTIONS=--no-deprecation payload",
+    "start": "NODE_OPTIONS=--no-deprecation next start"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "3.90.2",
     "@payloadcms/next": "3.90.2",
     "@payloadcms/richtext-lexical": "3.90.2",
     "@payloadcms/ui": "3.90.2",
-    "cross-env": "^10.0.0",
     "graphql": "^16.11.0",
     "next": "16.4.0",
     "payload": "3.90.2",
