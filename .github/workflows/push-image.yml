@@ -4,6 +4,9 @@
 # image too, which is the check its merge waits for, and pushes it as
 # sha-<head SHA> for the cluster's pull request preview -- see
 # https://homelab-apps.wlkr.ch/previews/. A fork's build cannot push.
+# A push to main that changes more than docs or CI releases the next patch
+# version: the image gets the semver tags and the commit gets v<version>.
+# Pushing a v* tag by hand still releases a minor or major version.
 name: Push image
 
 "on":
@@ -20,17 +23,41 @@ permissions:
 
 concurrency:
   group: push-image-${{ github.ref }}
-  cancel-in-progress: true
+  # Cancelling a main run between the image push and the tag push would
+  # publish a version that the next run builds again.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       packages: write
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          fetch-depth: 0
+
+      - name: Next version
+        id: version
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          latest=$(git tag --list 'v*' --sort=-v:refname | head -n 1)
+          if [ -z "$latest" ]; then
+            echo "version=0.1.0" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if git describe --exact-match --tags --match 'v*' HEAD >/dev/null 2>&1; then
+            echo "HEAD is already tagged; nothing to release."
+            exit 0
+          fi
+          if git diff --quiet "$latest" HEAD -- . ':!*.md' ':!.github' ':!renovate.json'; then
+            echo "Only docs or CI changed since $latest; nothing to release."
+            exit 0
+          fi
+          IFS=. read -r major minor patch <<< "${latest#v}"
+          echo "version=$major.$minor.$((patch + 1))" >> "$GITHUB_OUTPUT"
 
       - name: Set up Buildx
         uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
@@ -54,8 +81,8 @@ jobs:
           images: ghcr.io/janwelker/advent-wollbi-ch
           tags: |
             type=ref,event=branch
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{version}},value=${{ steps.version.outputs.version }}
+            type=semver,pattern={{major}}.{{minor}},value=${{ steps.version.outputs.version }}
             type=sha,format=long
 
       - name: Build and push
@@ -67,3 +94,11 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+      - name: Tag the release
+        if: steps.version.outputs.version != ''
+        env:
+          TAG: v${{ steps.version.outputs.version }}
+        run: |
+          git tag "$TAG"
+          git push origin "refs/tags/$TAG"
