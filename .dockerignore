@@ -1,0 +1,17 @@
+# The builder stage runs `COPY . .`; keep out what the build does not need and
+# what must never reach an image layer: git history, local secrets, local
+# builds and dependencies (the deps stage installs its own).
+.git
+.github
+.env
+.env.*
+!.env.example
+node_modules
+.next
+out
+media
+*.tsbuildinfo
+next-env.d.ts
+.DS_Store
+Dockerfile
+.dockerignore

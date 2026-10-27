@@ -68,3 +68,9 @@ The image is built by `.github/workflows/push-image.yml` and published to
 Every merge to `main` that changes more than docs or CI releases the next
 patch version: the workflow pushes the image tags and the `v<version>` git
 tag. For a minor or major release, push the `v*` tag by hand.
+
+A pull request from a branch of this repository pushes its build to the same
+package as `sha-<head SHA>`, because that is the name the cluster's preview
+ApplicationSet pulls; it never gets a semver tag, so Renovate in homelab-apps
+never offers it to production. `.dockerignore` keeps `.git` and local `.env`
+files out of the build context.
