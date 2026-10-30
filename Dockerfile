@@ -4,7 +4,7 @@
 #
 # The builder is Debian trixie, not Alpine, because the runtime is: sharp
 # ships prebuilt binaries per libc, and a musl build would not load on glibc.
-FROM node:24-trixie-slim@sha256:43b9ba1142b8dcf33fa8f922ca1be85714adc444e0586c7cf7726daaeabc1bea AS base
+FROM node:26-trixie-slim@sha256:e4db4c914bf8ad241bd24804fc25d272d89bad97e68cdc8a1414862790a02c39 AS base
 
 FROM base AS deps
 WORKDIR /app
