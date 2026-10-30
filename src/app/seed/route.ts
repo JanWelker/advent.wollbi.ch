@@ -21,11 +21,13 @@ const altFor = (filename: string) => {
   return filename.replace(/\.[^.]+$/, '')
 }
 
-// POST only, and only with the secret the pod already holds. The route is
-// part of the build, so there is no second image to keep in step -- the
-// PostSync hook in homelab-apps is a curl.
+// POST only, and only with the token the pod already holds. The route is part
+// of the build, so there is no second image to keep in step -- the PostSync
+// hook in homelab-apps is a curl. PAYLOAD_SECRET stands in only while
+// SEED_TOKEN is unset, so this image still seeds under manifests that predate
+// it; a SEED_TOKEN set but empty refuses everything.
 export const POST = async (request: Request) => {
-  const secret = process.env.PAYLOAD_SECRET
+  const secret = process.env.SEED_TOKEN ?? process.env.PAYLOAD_SECRET
   if (!secret || request.headers.get('x-seed-token') !== secret) {
     return Response.json({ error: 'forbidden' }, { status: 403 })
   }
