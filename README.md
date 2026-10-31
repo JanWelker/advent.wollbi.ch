@@ -22,7 +22,7 @@ Postgres and are edited at `/admin` rather than in Markdown in this repository.
 ## Running it
 
 ```bash
-cp .env.example .env          # and edit DATABASE_URL and PAYLOAD_SECRET
+cp .env.example .env          # and edit DATABASE_URL, PAYLOAD_SECRET and SEED_TOKEN
 npm install
 npm run dev
 ```
@@ -42,7 +42,7 @@ the first editor from `SEED_ADMIN_EMAIL` and `SEED_ADMIN_PASSWORD`, imports
 every file in `public/seed/images/` as media, and creates the three pages.
 
 ```bash
-curl -X POST -H "x-seed-token: $PAYLOAD_SECRET" http://localhost:3000/seed
+curl -X POST -H "x-seed-token: $SEED_TOKEN" http://localhost:3000/seed
 ```
 
 It refuses without the token and does nothing if any page already exists, so
