@@ -24,7 +24,11 @@ export default async function ContentPage({ params }: { params: Promise<{ slug: 
       <header className="page-header wrap">
         <h1>{page.title}</h1>
       </header>
-      <PageBody layout={await withSignups(payload, (page.layout ?? []) as never)} site={site} />
+      <PageBody
+        layout={await withSignups(payload, (page.layout ?? []) as never)}
+        site={site}
+        slug={slug}
+      />
     </>
   )
 }

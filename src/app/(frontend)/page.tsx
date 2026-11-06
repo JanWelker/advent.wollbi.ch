@@ -25,7 +25,7 @@ export default async function HomePage() {
   return (
     <>
       <Hero title={page.title} site={site} windows={windows} />
-      <PageBody layout={layout} site={site} />
+      <PageBody layout={layout} site={site} slug="home" />
     </>
   )
 }

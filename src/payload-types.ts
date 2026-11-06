@@ -167,8 +167,10 @@ export interface Page {
             heading?: string | null;
             weekdayTime?: string | null;
             weekendTime?: string | null;
-            calendar?: (number | null) | Media;
-            flyer?: (number | null) | Media;
+            /**
+             * Steht auf dem Flyer nach den Zeiten. Flyer und Kalender entstehen aus der Liste.
+             */
+            flyerLine?: string | null;
             /**
              * Ein Jahr, z. B. 2026: Die Liste zeigt dann die Anmeldungen dieses Jahres statt der Zeilen unten.
              */
@@ -414,8 +416,7 @@ export interface PagesSelect<T extends boolean = true> {
               heading?: T;
               weekdayTime?: T;
               weekendTime?: T;
-              calendar?: T;
-              flyer?: T;
+              flyerLine?: T;
               signupYear?: T;
               entries?:
                 | T

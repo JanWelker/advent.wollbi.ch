@@ -21,8 +21,6 @@ export const site = {
 const day = (d: number) => `2025-12-${String(d).padStart(2, '0')}T11:00:00.000Z`
 
 export const windows = {
-  calendar: 'advent_2025.ics',
-  flyer: 'flyer_2025.pdf',
   entries: [
     { date: day(7), names: 'Sabina & Raoul', house: 'W43' },
     {

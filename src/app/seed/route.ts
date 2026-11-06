@@ -67,8 +67,6 @@ export const POST = async (request: Request) => {
           heading: 'Wann, wo, bei wem',
           weekdayTime: '19:00',
           weekendTime: '17:00',
-          calendar: media[windows.calendar],
-          flyer: media[windows.flyer],
           entries: windows.entries,
         },
         { blockType: 'callout', title: cup.title, text: cup.text, image: media[cup.image] },

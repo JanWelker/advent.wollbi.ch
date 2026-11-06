@@ -10,6 +10,9 @@ const nextConfig: NextConfig = {
   // The Dockerfile copies .next/standalone; without this there is nothing
   // to copy. See the deployment in JanWelker/homelab-apps.
   output: 'standalone',
+  // Its layout engine loads WebAssembly from its own files at runtime, which
+  // a bundled copy cannot find.
+  serverExternalPackages: ['@react-pdf/renderer'],
   images: {
     localPatterns: [{ pathname: '/api/media/file/**' }],
   },

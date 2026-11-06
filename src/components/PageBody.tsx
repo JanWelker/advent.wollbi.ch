@@ -38,24 +38,26 @@ const Flyer = ({ media, label }: { media: Media; label?: string | null }) => (
   </figure>
 )
 
-const WindowsList = ({ block }: { block: Block }) => {
-  const calendar = asMedia(block.calendar)
-  const flyer = asMedia(block.flyer)
+// The calendar and the flyer are drawn from the same rows, see
+// src/app/(frontend)/kalender.ics and flyer.pdf.
+const WindowsList = ({ block, slug }: { block: Block; slug: string }) => {
+  const query = slug === 'home' ? '' : `?seite=${encodeURIComponent(slug)}`
+  const hasEvenings = (block.entries ?? []).length > 0
   return (
     <section id="fenster" className="windows">
       <div className="wrap">
         <div className="section-head">
           <h2>{block.heading || 'Wann, wo, bei wem'}</h2>
           <div className="actions">
-            {calendar?.url ? (
-              <a className="button button-primary" href={localPath(calendar.url)}>
-                In meinen Kalender
-              </a>
-            ) : null}
-            {flyer?.url ? (
-              <a className="button button-secondary" href={localPath(flyer.url)}>
-                Flyer (PDF)
-              </a>
+            {hasEvenings ? (
+              <>
+                <a className="button button-primary" href={`/kalender.ics${query}`}>
+                  In meinen Kalender
+                </a>
+                <a className="button button-secondary" href={`/flyer.pdf${query}`}>
+                  Flyer (PDF)
+                </a>
+              </>
             ) : null}
           </div>
         </div>
@@ -166,7 +168,15 @@ const arrange = (layout: Block[]) => {
 
 // One renderer for every page: the home page is the page whose slug is
 // `home`, and nothing else about it is special.
-export const PageBody = ({ layout, site }: { layout?: Block[] | null; site: Site | null }) => (
+export const PageBody = ({
+  layout,
+  site,
+  slug,
+}: {
+  layout?: Block[] | null
+  site: Site | null
+  slug: string
+}) => (
   <>
     {arrange(layout ?? []).map((block, index) => {
       switch (block.blockType) {
@@ -178,7 +188,7 @@ export const PageBody = ({ layout, site }: { layout?: Block[] | null; site: Site
           )
 
         case 'windows':
-          return <WindowsList key={index} block={block} />
+          return <WindowsList key={index} block={block} slug={slug} />
 
         case 'callout': {
           const image = asMedia(block.image)
