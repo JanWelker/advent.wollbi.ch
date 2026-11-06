@@ -8,8 +8,10 @@ Postgres and are edited at `/admin` rather than in Markdown in this repository.
 
 | Path | What |
 | --- | --- |
-| `src/collections/` | `pages`, `media`, `users` |
+| `src/collections/` | `pages`, `signups`, `media`, `users` |
 | `src/globals/Site.ts` | Title, subtitle, invitation, contact address, the OK and the footer |
+| `src/globals/Signup.ts` | The sign-up: days, open or not, the yearly code |
+| `src/app/(frontend)/anmelden/` | The public sign-up form |
 | `src/blocks/` | What a page is made of: the year's windows, a callout, the OK, the archive teaser, and the old prose, images and download |
 | `src/components/` | The night street, the hero and the block renderer |
 | `src/lib/windows.ts` | Weekday, time and date range, derived from each window's date |
@@ -58,6 +60,30 @@ account outside the group is turned away. The client is `OIDC_CLIENT_ID` and
 `<NEXT_PUBLIC_SERVER_URL>/api/users/oauth/callback` as its redirect URI;
 without the two, the admin has no login. The provider, the group and the
 secret are in JanWelker/homelab-apps, directory `advent-wollbi/`.
+
+## Sign-up
+
+Households pick their day at `/anmelden`, first come, first served: one
+window per day and one day per house. Both rules are unique indexes on
+`signups`, so a simultaneous double booking fails in Postgres rather than
+slipping past a check. House numbers are compared without spaces and in
+capitals.
+
+The page asks for no account. It opens only with the year's code, which the
+QR code on the flyer carries as `/anmelden?code=<code>`; the code is readable
+by editors only, never through the public API.
+
+Each year:
+
+1. In `/admin`, Globals, Anmeldung: set the first and last day, clear the
+   code, tick *Anmeldung offen* and save. A new code and its QR code appear;
+   the old QR code stops working.
+2. Download the QR code (SVG or PNG) for the flyer.
+3. On the home page's windows block, set *Aus den Anmeldungen von* to the
+   year. The list and the street then show the sign-ups; the rows below it
+   are ignored while the year is set.
+4. Close the sign-up when the calendar is full. Editors add, move and delete
+   sign-ups under Anmeldungen, for example for a household without a phone.
 
 ## Changing the schema
 

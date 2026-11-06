@@ -68,6 +68,7 @@ export interface Config {
   blocks: {};
   collections: {
     pages: Page;
+    signups: Signup;
     media: Media;
     users: User;
     'payload-kv': PayloadKv;
@@ -78,6 +79,7 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     pages: PagesSelect<false> | PagesSelect<true>;
+    signups: SignupsSelect<false> | SignupsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
@@ -91,9 +93,11 @@ export interface Config {
   fallbackLocale: null;
   globals: {
     site: Site;
+    signup: Signup1;
   };
   globalsSelect: {
     site: SiteSelect<false> | SiteSelect<true>;
+    signup: SignupSelect<false> | SignupSelect<true>;
   };
   locale: null;
   widgets: {
@@ -165,6 +169,10 @@ export interface Page {
             weekendTime?: string | null;
             calendar?: (number | null) | Media;
             flyer?: (number | null) | Media;
+            /**
+             * Ein Jahr, z. B. 2026: Die Liste zeigt dann die Anmeldungen dieses Jahres statt der Zeilen unten.
+             */
+            signupYear?: number | null;
             entries?:
               | {
                   date: string;
@@ -258,6 +266,34 @@ export interface Media {
   focalY?: number | null;
 }
 /**
+ * Ein Fenster pro Tag und ein Tag pro Haus. Die Seite /anmelden schreibt hierher.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "signups".
+ */
+export interface Signup {
+  id: number;
+  date: string;
+  /**
+   * z. B. W43
+   */
+  house: string;
+  names: string;
+  contact?: string | null;
+  /**
+   * z. B. «ohne Apéro»
+   */
+  note?: string | null;
+  /**
+   * Nur wenn es nicht die übliche Zeit für diesen Wochentag ist.
+   */
+  time?: string | null;
+  day: string;
+  year: number;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
@@ -297,6 +333,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'pages';
         value: number | Page;
+      } | null)
+    | ({
+        relationTo: 'signups';
+        value: number | Signup;
       } | null)
     | ({
         relationTo: 'media';
@@ -376,6 +416,7 @@ export interface PagesSelect<T extends boolean = true> {
               weekendTime?: T;
               calendar?: T;
               flyer?: T;
+              signupYear?: T;
               entries?:
                 | T
                 | {
@@ -437,6 +478,22 @@ export interface PagesSelect<T extends boolean = true> {
               blockName?: T;
             };
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "signups_select".
+ */
+export interface SignupsSelect<T extends boolean = true> {
+  date?: T;
+  house?: T;
+  names?: T;
+  contact?: T;
+  note?: T;
+  time?: T;
+  day?: T;
+  year?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -541,6 +598,23 @@ export interface Site {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "signup".
+ */
+export interface Signup1 {
+  id: number;
+  open?: boolean | null;
+  firstDay: string;
+  lastDay: string;
+  intro?: string | null;
+  /**
+   * Steckt im QR-Code. Für ein neues Jahr leeren und speichern: Es entsteht ein neuer Code, und der alte QR-Code gilt nicht mehr.
+   */
+  code?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "site_select".
  */
 export interface SiteSelect<T extends boolean = true> {
@@ -556,6 +630,20 @@ export interface SiteSelect<T extends boolean = true> {
         id?: T;
       };
   footer?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "signup_select".
+ */
+export interface SignupSelect<T extends boolean = true> {
+  open?: T;
+  firstDay?: T;
+  lastDay?: T;
+  intro?: T;
+  code?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

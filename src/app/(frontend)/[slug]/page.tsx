@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 
 import config from '@/payload.config'
 import { PageBody } from '@/components/PageBody'
+import { withSignups } from '@/lib/signup'
 
 // Rendered per request: the content is in Postgres, and a build that
 // prerendered it would need a database to build.
@@ -23,7 +24,7 @@ export default async function ContentPage({ params }: { params: Promise<{ slug: 
       <header className="page-header wrap">
         <h1>{page.title}</h1>
       </header>
-      <PageBody layout={page.layout as never} site={site} />
+      <PageBody layout={await withSignups(payload, (page.layout ?? []) as never)} site={site} />
     </>
   )
 }

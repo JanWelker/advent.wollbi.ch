@@ -7,7 +7,9 @@ import sharp from 'sharp'
 
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
+import { Signups } from './collections/Signups'
 import { Users } from './collections/Users'
+import { Signup } from './globals/Signup'
 import { Site } from './globals/Site'
 import { authentikPlugin } from './lib/authentik'
 import { migrations } from './migrations'
@@ -24,8 +26,8 @@ export default buildConfig({
     components: { afterLogin: ['@/components/AuthentikLogin'] },
     importMap: { baseDir: path.resolve(dirname) },
   },
-  collections: [Pages, Media, Users],
-  globals: [Site],
+  collections: [Pages, Signups, Media, Users],
+  globals: [Site, Signup],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: { outputFile: path.resolve(dirname, 'payload-types.ts') },
