@@ -23,12 +23,14 @@
     "next": "16.4.4",
     "payload": "3.92.1",
     "payload-oauth2": "1.0.21",
+    "qrcode": "1.5.4",
     "react": "19.3.1",
     "react-dom": "19.3.1",
     "sharp": "0.35.5"
   },
   "devDependencies": {
     "@types/node": "24.19.2",
+    "@types/qrcode": "1.5.6",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
     "eslint": "10.14.0",

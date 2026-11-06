@@ -56,11 +56,24 @@ export const Windows: Block = {
       ],
     },
     {
+      name: 'signupYear',
+      type: 'number',
+      label: 'Aus den Anmeldungen von',
+      admin: {
+        description:
+          'Ein Jahr, z. B. 2026: Die Liste zeigt dann die Anmeldungen dieses Jahres statt der Zeilen unten.',
+      },
+    },
+    {
       name: 'entries',
       type: 'array',
       label: 'Fenster',
       labels: { singular: 'Fenster', plural: 'Fenster' },
-      minRows: 1,
+      admin: { condition: (_, siblingData) => !siblingData?.signupYear },
+      validate: (value: unknown, { siblingData }: { siblingData: Record<string, unknown> }) =>
+        Boolean(siblingData?.signupYear) ||
+        (Array.isArray(value) && value.length > 0) ||
+        'Mindestens ein Fenster, oder ein Jahr der Anmeldungen.',
       fields: [
         {
           name: 'date',
