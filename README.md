@@ -37,9 +37,9 @@ container run -d --name adventpg -p 5432:5432 \
 
 ## Seeding
 
-The seed runs once, against an empty database, and does three things: creates
-the first editor from `SEED_ADMIN_EMAIL` and `SEED_ADMIN_PASSWORD`, imports
-every file in `public/seed/images/` as media, and creates the three pages.
+The seed runs once, against an empty database, and does two things: imports
+every file in `public/seed/images/` as media, and creates the three pages. It
+creates no editor; see [Logging in](#logging-in).
 
 ```bash
 curl -X POST -H "x-seed-token: $SEED_TOKEN" http://localhost:3000/seed
@@ -47,6 +47,17 @@ curl -X POST -H "x-seed-token: $SEED_TOKEN" http://localhost:3000/seed
 
 It refuses without the token and does nothing if any page already exists, so
 the cluster can run it as a post-sync hook on every deploy.
+
+## Logging in
+
+Editors sign in at `/admin` through Authentik, with OpenID Connect; there are
+no passwords in Payload. The first login of a member of the `wollbi-editors`
+group creates their user, matched on the email Authentik reports, and an
+account outside the group is turned away. The client is `OIDC_CLIENT_ID` and
+`OIDC_CLIENT_SECRET` against `AUTHENTIK_URL`, with
+`<NEXT_PUBLIC_SERVER_URL>/api/users/oauth/callback` as its redirect URI;
+without the two, the admin has no login. The provider, the group and the
+secret are in JanWelker/homelab-apps, directory `advent-wollbi/`.
 
 ## Changing the schema
 
@@ -69,8 +80,6 @@ Every merge to `main` that changes more than docs or CI releases the next
 patch version: the workflow pushes the image tags and the `v<version>` git
 tag. For a minor or major release, push the `v*` tag by hand.
 
-A pull request from a branch of this repository pushes its build to the same
-package as `sha-<head SHA>`, because that is the name the cluster's preview
-ApplicationSet pulls; it never gets a semver tag, so Renovate in homelab-apps
-never offers it to production. `.dockerignore` keeps `.git` and local `.env`
+A pull request builds the image as its check and pushes nothing.
+`.dockerignore` keeps `.git` and local `.env`
 files out of the build context.

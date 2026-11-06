@@ -9,6 +9,7 @@ import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Users } from './collections/Users'
 import { Site } from './globals/Site'
+import { authentikPlugin } from './lib/authentik'
 import { migrations } from './migrations'
 
 const filename = fileURLToPath(import.meta.url)
@@ -20,6 +21,7 @@ export default buildConfig({
   serverURL,
   admin: {
     user: Users.slug,
+    components: { afterLogin: ['@/components/AuthentikLogin'] },
     importMap: { baseDir: path.resolve(dirname) },
   },
   collections: [Pages, Media, Users],
@@ -44,5 +46,5 @@ export default buildConfig({
   csrf: serverURL ? [serverURL] : [],
   cors: serverURL ? [serverURL] : [],
   sharp,
-  plugins: [],
+  plugins: [authentikPlugin(serverURL)],
 })
