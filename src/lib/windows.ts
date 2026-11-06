@@ -2,9 +2,13 @@
 // read in Zurich time: the admin's day picker stores midnight local, which
 // is the previous day in UTC.
 
+import { dayKey } from './signup'
+
 type Block = Record<string, any>
 
 export type Evening = {
+  // YYYY-MM-DD in Zurich, for the calendar file.
+  key: string
   day: string
   weekday: string
   weekdayShort: string
@@ -25,6 +29,7 @@ export const evenings = (block: Block): Evening[] =>
       const weekday = format(entry.date, { weekday: 'long' })
       const weekend = weekday === 'Samstag' || weekday === 'Sonntag'
       return {
+        key: dayKey(entry.date),
         day: format(entry.date, { day: 'numeric' }),
         weekday,
         weekdayShort: weekday.slice(0, 2),

@@ -36,6 +36,8 @@ export const Download: Block = {
 
 // The year's windows. The weekday and the time follow from the date, so a
 // row is only what changes from year to year: when, who and which house.
+// The calendar file and the flyer are drawn from the same rows, see
+// src/lib/calendar.ts and src/lib/flyer.tsx.
 export const Windows: Block = {
   slug: 'windows',
   labels: { singular: 'Adventsfenster', plural: 'Adventsfenster' },
@@ -49,11 +51,14 @@ export const Windows: Block = {
       ],
     },
     {
-      type: 'row',
-      fields: [
-        { name: 'calendar', type: 'upload', relationTo: 'media', label: 'Kalenderdatei (.ics)' },
-        { name: 'flyer', type: 'upload', relationTo: 'media', label: 'Flyer (PDF)' },
-      ],
+      name: 'flyerLine',
+      type: 'text',
+      label: 'Zeile auf dem Flyer',
+      defaultValue: 'Bring your own cup',
+      admin: {
+        description:
+          'Steht auf dem Flyer nach den Zeiten. Flyer und Kalender entstehen aus der Liste.',
+      },
     },
     {
       name: 'signupYear',

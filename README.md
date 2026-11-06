@@ -15,6 +15,8 @@ Postgres and are edited at `/admin` rather than in Markdown in this repository.
 | `src/blocks/` | What a page is made of: the year's windows, a callout, the OK, the archive teaser, and the old prose, images and download |
 | `src/components/` | The night street, the hero and the block renderer |
 | `src/lib/windows.ts` | Weekday, time and date range, derived from each window's date |
+| `src/lib/calendar.ts`, `src/lib/flyer.tsx` | `/kalender.ics` and `/flyer.pdf`, drawn per request from the windows list |
+| `public/fonts/` | The site's fonts as files, for the flyer |
 | `src/app/(frontend)/Snow.tsx` | The eight falling snowflakes the Pelican template drew inline |
 | `src/app/(frontend)/` | The public site |
 | `src/app/seed/` | The one-shot import of the Pelican content, and the content itself |
