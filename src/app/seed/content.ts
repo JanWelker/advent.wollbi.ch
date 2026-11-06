@@ -16,11 +16,6 @@ export const site = {
   footer: '© wollbi.ch',
 }
 
-export const admin = {
-  email: process.env.SEED_ADMIN_EMAIL || 'advent@wollbi.ch',
-  name: 'Wollbi Adventsfenster OK',
-}
-
 // The 2025 flyer, row by row. Noon in Zurich, so the day is the same in
 // every timezone the date passes through.
 const day = (d: number) => `2025-12-${String(d).padStart(2, '0')}T11:00:00.000Z`

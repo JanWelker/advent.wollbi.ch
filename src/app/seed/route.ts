@@ -4,7 +4,7 @@ import path from 'path'
 import { getPayload } from 'payload'
 
 import { markdown } from '@/lib/lexical'
-import { admin, archive, archiveIntro, cup, info, site, windows } from './content'
+import { archive, archiveIntro, cup, info, site, windows } from './content'
 
 export const dynamic = 'force-dynamic'
 export const maxDuration = 300
@@ -33,15 +33,6 @@ export const POST = async (request: Request) => {
   }
 
   const payload = await getPayload({ config: configPromise })
-
-  const users = await payload.count({ collection: 'users' })
-  if (users.totalDocs === 0) {
-    const password = process.env.SEED_ADMIN_PASSWORD
-    if (!password) {
-      return Response.json({ error: 'SEED_ADMIN_PASSWORD is not set' }, { status: 500 })
-    }
-    await payload.create({ collection: 'users', data: { ...admin, password } })
-  }
 
   const pages = await payload.count({ collection: 'pages' })
   if (pages.totalDocs > 0) {
