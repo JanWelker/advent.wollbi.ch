@@ -45,14 +45,16 @@ const Flyer = ({ media, label }: { media: Media; label?: string | null }) => (
 const WindowsList = ({ block, slug }: { block: Block; slug: string }) => {
   const query = slug === 'home' ? '' : `?seite=${encodeURIComponent(slug)}`
   const list = evenings(block)
-  const hasEvenings = list.some((evening) => !evening.free)
+  // The calendar and the flyer wait for the sign-up to close: until then
+  // the list is not final.
+  const showDownloads = !block.signupOpen && list.some((evening) => !evening.free)
   return (
     <section id="fenster" className="windows">
       <div className="wrap">
         <div className="section-head">
           <h2>{block.heading || 'Wann, wo, bei wem'}</h2>
           <div className="actions">
-            {hasEvenings ? (
+            {showDownloads ? (
               <>
                 <a className="button button-primary" href={`/kalender.ics${query}`}>
                   In meinen Kalender
