@@ -6,7 +6,16 @@ import { signUp, type SignupState } from './actions'
 
 export type Day = { day: string; label: string; house?: string | null; names?: string | null }
 
-export const SignupForm = ({ code, days }: { code: string; days: Day[] }) => {
+export const SignupForm = ({
+  code,
+  days,
+  chosen,
+}: {
+  code: string
+  days: Day[]
+  // The day picked on the home page's street, if it is still free.
+  chosen?: string
+}) => {
   const [state, action, pending] = useActionState<SignupState, FormData>(signUp, {})
   const free = days.filter((d) => !d.house)
 
@@ -30,7 +39,14 @@ export const SignupForm = ({ code, days }: { code: string; days: Day[] }) => {
           {days.map((d) => (
             <li key={d.day} className={d.house ? 'is-taken' : undefined}>
               <label>
-                <input type="radio" name="day" value={d.day} disabled={Boolean(d.house)} required />
+                <input
+                  type="radio"
+                  name="day"
+                  value={d.day}
+                  disabled={Boolean(d.house)}
+                  defaultChecked={!d.house && d.day === chosen}
+                  required
+                />
                 <span className="signup-day">{d.label}</span>
                 {d.house ? <span className="signup-taken">{d.house}</span> : null}
               </label>

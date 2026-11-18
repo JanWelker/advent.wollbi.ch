@@ -257,6 +257,36 @@ main > .wrap .button-secondary:hover {
   font-size: 1.3rem;
 }
 
+/* While the sign-up is open: how many evenings are left, and the way in. */
+
+.hero-signup {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  margin-top: 0.75rem;
+}
+
+.hero-signup p {
+  margin: 0;
+  color: var(--moon);
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.button-glow {
+  border-color: var(--glow);
+  background: var(--glow);
+  color: var(--night);
+}
+
+.button-glow:hover {
+  background: var(--moon);
+  border-color: var(--moon);
+  color: var(--night);
+}
+
 /* The street. Houses stand on the snow line; the snow is the bottom of the
    street's own background, so it runs edge to edge whatever the count. */
 
@@ -332,6 +362,42 @@ main > .wrap .button-secondary:hover {
   font-family: var(--display);
   font-weight: 600;
   font-size: 1.25rem;
+}
+
+/* A free day of an open sign-up: the house is dark, its window waits. */
+
+.house-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+.house.is-free .house-body {
+  filter: brightness(0.7);
+}
+
+.house.is-free .house-window {
+  border: 2px dashed #9fb0cc;
+  background: transparent;
+  box-shadow: none;
+  color: #9fb0cc;
+  transition:
+    background 0.2s,
+    box-shadow 0.2s;
+}
+
+.house-link:hover .house-window {
+  border-color: var(--glow);
+  background: var(--glow-soft);
+  color: var(--moon);
+}
+
+.house.is-free .house-number {
+  color: var(--slate);
+  font-weight: 500;
 }
 
 /* On a phone thirteen houses are a skyline, not a table: the numbers go,
@@ -460,6 +526,34 @@ main > .wrap .button-secondary:hover {
   font-family: var(--display);
   font-weight: 600;
   font-size: 1.25rem;
+}
+
+.evening.is-free .evening-names {
+  color: var(--slate);
+}
+
+.evening-signup {
+  flex-shrink: 0;
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  background: var(--night);
+  color: var(--moon);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.evening-signup:hover {
+  background: var(--night-line);
+  color: var(--moon);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 @media (max-width: 720px) {

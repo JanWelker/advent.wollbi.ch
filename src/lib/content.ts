@@ -15,7 +15,9 @@ export const pageWindows = async (slug: string) => {
   ])
   const page = found.docs[0]
   if (!page) return null
-  const layout = await withSignups(payload, (page.layout ?? []) as Block[])
+  const layout = await withSignups(payload, (page.layout ?? []) as Block[], {
+    home: slug === 'home',
+  })
   const windows = layout.find((block) => block.blockType === 'windows')
   if (!windows) return null
   return { page, site, windows }

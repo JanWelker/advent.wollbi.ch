@@ -8,7 +8,7 @@ export const dynamic = 'force-dynamic'
 export async function GET(request: Request) {
   const found = await pageWindows(slugOf(request))
   if (!found) return new Response('Not found', { status: 404 })
-  const list = evenings(found.windows)
+  const list = evenings(found.windows).filter((e) => !e.free)
   const year = yearOf(list.map((e) => e.key))
   const body = calendar(list, found.site?.name ?? 'Adventsfenster', publicHost(request))
   return new Response(body, {

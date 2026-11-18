@@ -16,6 +16,8 @@ export type Evening = {
   names: string
   house: string
   note?: string | null
+  // A day of an open sign-up that nobody has taken yet.
+  free?: boolean
 }
 
 const format = (iso: string, options: Intl.DateTimeFormatOptions) =>
@@ -34,9 +36,10 @@ export const evenings = (block: Block): Evening[] =>
         weekday,
         weekdayShort: weekday.slice(0, 2),
         time: entry.time || (weekend ? block.weekendTime : block.weekdayTime) || '',
-        names: entry.names,
-        house: entry.house,
+        names: entry.names ?? '',
+        house: entry.house ?? '',
         note: entry.note,
+        free: Boolean(entry.free),
       }
     })
 

@@ -11,7 +11,7 @@ export async function GET(request: Request) {
   const found = await pageWindows(slugOf(request))
   if (!found) return new Response('Not found', { status: 404 })
   const { page, site, windows } = found
-  const list = evenings(windows)
+  const list = evenings(windows).filter((e) => !e.free)
   const times = [
     windows.weekdayTime ? `Mo–Fr ${windows.weekdayTime}` : null,
     windows.weekendTime ? `Sa & So ${windows.weekendTime}` : null,

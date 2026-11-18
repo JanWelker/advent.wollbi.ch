@@ -80,12 +80,16 @@ Each year:
 1. In `/admin`, Globals, Anmeldung: set the first and last day, clear the
    code, tick *Anmeldung offen* and save. A new code and its QR code appear;
    the old QR code stops working.
-2. Download the QR code (SVG or PNG) for the flyer.
-3. On the home page's windows block, set *Aus den Anmeldungen von* to the
-   year. The list and the street then show the sign-ups; the rows below it
-   are ignored while the year is set.
-4. Close the sign-up when the calendar is full. Editors add, move and delete
-   sign-ups under Anmeldungen, for example for a household without a phone.
+2. Download the QR code (SVG or PNG) for the flyer, and print the code
+   next to it for typing. Never put the `/anmelden?code=` link on a page.
+3. While the sign-up is open, the home page's first windows block shows the
+   sign-up's days on its own: taken ones lit with the house, free ones as
+   dark windows that link to `/anmelden?tag=<day>`, which asks for the code.
+   The calendar file and the flyer leave the free days out.
+4. Close the sign-up when the calendar is full, and on the home page's
+   windows block set *Aus den Anmeldungen von* to the year, so the list keeps
+   showing the sign-ups. Editors add, move and delete sign-ups under
+   Anmeldungen, for example for a household without a phone.
 
 ## Changing the schema
 
