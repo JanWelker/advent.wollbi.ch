@@ -607,10 +607,6 @@ export interface Signup1 {
   firstDay: string;
   lastDay: string;
   intro?: string | null;
-  /**
-   * Steckt im QR-Code. Für ein neues Jahr leeren und speichern: Es entsteht ein neuer Code, und der alte QR-Code gilt nicht mehr.
-   */
-  code?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -644,7 +640,6 @@ export interface SignupSelect<T extends boolean = true> {
   firstDay?: T;
   lastDay?: T;
   intro?: T;
-  code?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

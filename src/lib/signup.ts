@@ -1,4 +1,3 @@
-import { randomBytes, timingSafeEqual } from 'crypto'
 import type { Payload } from 'payload'
 
 // The sign-up's helpers. A day is a `YYYY-MM-DD` string in Zurich time: the
@@ -40,19 +39,6 @@ export const dayLabel = (day: string) =>
 // let a household in twice.
 export const normaliseHouse = (house: unknown) =>
   typeof house === 'string' ? house.replace(/\s+/g, '').toUpperCase() : house
-
-// Twelve characters from an alphabet without 0/O and 1/I/L: printed under the
-// QR code, it has to survive being typed off a flyer.
-const ALPHABET = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789'
-export const newCode = () =>
-  Array.from(randomBytes(12), (byte) => ALPHABET[byte % ALPHABET.length]).join('')
-
-export const codeMatches = (given: unknown, expected?: string | null) => {
-  if (typeof given !== 'string' || !expected) return false
-  const a = Buffer.from(given.trim().toUpperCase())
-  const b = Buffer.from(expected)
-  return a.length === b.length && timingSafeEqual(a, b)
-}
 
 // A windows block with `signupYear` set lists that year's sign-ups instead of
 // its own rows. While the sign-up is open, the home page's first windows

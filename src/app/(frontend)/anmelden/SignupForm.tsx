@@ -7,11 +7,9 @@ import { signUp, type SignupState } from './actions'
 export type Day = { day: string; label: string; house?: string | null; names?: string | null }
 
 export const SignupForm = ({
-  code,
   days,
   chosen,
 }: {
-  code: string
   days: Day[]
   // The day picked on the home page's street, if it is still free.
   chosen?: string
@@ -31,8 +29,6 @@ export const SignupForm = ({
 
   return (
     <form action={action} className="signup-form">
-      <input type="hidden" name="code" value={code} />
-
       <fieldset>
         <legend>Tag</legend>
         <ul className="signup-days">

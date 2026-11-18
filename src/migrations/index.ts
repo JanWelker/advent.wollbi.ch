@@ -4,6 +4,7 @@ import * as migration_20261106_102610_authentik_oidc from './20261106_102610_aut
 import * as migration_20261106_110218_signup from './20261106_110218_signup';
 import * as migration_20261106_114054_drop_uploads from './20261106_114054_drop_uploads';
 import * as migration_20261106_114100_flyer_line from './20261106_114100_flyer_line';
+import * as migration_20261118_084600_drop_signup_code from './20261118_084600_drop_signup_code';
 
 export const migrations = [
   {
@@ -34,6 +35,11 @@ export const migrations = [
   {
     up: migration_20261106_114100_flyer_line.up,
     down: migration_20261106_114100_flyer_line.down,
-    name: '20261106_114100_flyer_line'
+    name: '20261106_114100_flyer_line',
+  },
+  {
+    up: migration_20261118_084600_drop_signup_code.up,
+    down: migration_20261118_084600_drop_signup_code.down,
+    name: '20261118_084600_drop_signup_code'
   },
 ];

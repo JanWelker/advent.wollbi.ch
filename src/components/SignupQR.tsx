@@ -1,17 +1,14 @@
 'use client'
 
-import { useFormFields } from '@payloadcms/ui'
 import QRCode from 'qrcode'
 import { useEffect, useState } from 'react'
 
-// The QR code for the flyer, drawn from the saved code. The admin is served
-// from the public host, so its origin is the link the QR code carries.
+// The QR code for the flyer, pointing at /anmelden. The admin is served from
+// the public host, so its origin is the link the QR code carries.
 export default function SignupQR() {
-  const code = useFormFields(([fields]) => fields.code?.value as string | undefined)
   const [svg, setSvg] = useState('')
   const [png, setPng] = useState('')
-  const url =
-    code && typeof window !== 'undefined' ? `${window.location.origin}/anmelden?code=${code}` : ''
+  const url = typeof window !== 'undefined' ? `${window.location.origin}/anmelden` : ''
 
   useEffect(() => {
     if (!url) return
@@ -19,9 +16,7 @@ export default function SignupQR() {
     QRCode.toDataURL(url, { width: 1200, margin: 2 }).then(setPng)
   }, [url])
 
-  if (!url) {
-    return <p className="field-description">Nach dem Speichern erscheint hier der QR-Code.</p>
-  }
+  if (!url) return null
 
   return (
     <div style={{ marginBottom: 'var(--spacing-field)' }}>
