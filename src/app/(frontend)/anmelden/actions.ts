@@ -3,7 +3,7 @@
 import { getPayload } from 'payload'
 
 import config from '@/payload.config'
-import { codeMatches, dayDate, dayLabel, daysBetween, normaliseHouse } from '@/lib/signup'
+import { dayDate, dayLabel, daysBetween, normaliseHouse } from '@/lib/signup'
 
 export type SignupState = { ok?: boolean; error?: string; day?: string }
 
@@ -19,9 +19,6 @@ export async function signUp(_: SignupState, form: FormData): Promise<SignupStat
   const payload = await getPayload({ config: await config })
   const signup = await payload.findGlobal({ slug: 'signup' })
 
-  if (!codeMatches(form.get('code'), signup.code)) {
-    return { error: 'Der Code stimmt nicht. Bitte den QR-Code auf dem Flyer scannen.' }
-  }
   if (!signup.open) return { error: 'Die Anmeldung ist geschlossen.' }
 
   const day = text(form, 'day', 10)

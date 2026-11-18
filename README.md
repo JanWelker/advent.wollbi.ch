@@ -10,7 +10,7 @@ Postgres and are edited at `/admin` rather than in Markdown in this repository.
 | --- | --- |
 | `src/collections/` | `pages`, `signups`, `media`, `users` |
 | `src/globals/Site.ts` | Title, subtitle, invitation, contact address, the OK and the footer |
-| `src/globals/Signup.ts` | The sign-up: days, open or not, the yearly code |
+| `src/globals/Signup.ts` | The sign-up: days, open or not, the flyer's QR code |
 | `src/app/(frontend)/anmelden/` | The public sign-up form |
 | `src/blocks/` | What a page is made of: the year's windows, a callout, the OK, the archive teaser, and the old prose, images and download |
 | `src/components/` | The night street, the hero and the block renderer |
@@ -71,20 +71,17 @@ window per day and one day per house. Both rules are unique indexes on
 slipping past a check. House numbers are compared without spaces and in
 capitals.
 
-The page asks for no account. It opens only with the year's code, which the
-QR code on the flyer carries as `/anmelden?code=<code>`; the code is readable
-by editors only, never through the public API.
+The page asks for no account and no code: anyone can sign up while the
+sign-up is open. The QR code on the flyer leads to `/anmelden`.
 
 Each year:
 
-1. In `/admin`, Globals, Anmeldung: set the first and last day, clear the
-   code, tick *Anmeldung offen* and save. A new code and its QR code appear;
-   the old QR code stops working.
-2. Download the QR code (SVG or PNG) for the flyer, and print the code
-   next to it for typing. Never put the `/anmelden?code=` link on a page.
+1. In `/admin`, Globals, Anmeldung: set the first and last day, tick
+   *Anmeldung offen* and save.
+2. Download the QR code (SVG or PNG) for the flyer.
 3. While the sign-up is open, the home page's first windows block shows the
    sign-up's days on its own: taken ones lit with the house, free ones as
-   dark windows that link to `/anmelden?tag=<day>`, which asks for the code.
+   dark windows that link to `/anmelden?tag=<day>` with that day chosen.
    The calendar file and the flyer leave the free days out.
 4. Close the sign-up when the calendar is full, and on the home page's
    windows block set *Aus den Anmeldungen von* to the year, so the list keeps
