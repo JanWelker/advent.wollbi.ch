@@ -19,7 +19,9 @@ export default async function HomePage() {
   const page = found.docs[0]
   if (!page) notFound()
 
-  const layout = await withSignups(payload, (page.layout ?? []) as Record<string, any>[])
+  const layout = await withSignups(payload, (page.layout ?? []) as Record<string, any>[], {
+    home: true,
+  })
   const windows = layout.find((block) => block.blockType === 'windows')
 
   return (

@@ -55,11 +55,47 @@ export const codeMatches = (given: unknown, expected?: string | null) => {
 }
 
 // A windows block with `signupYear` set lists that year's sign-ups instead of
-// its own rows. Resolved before rendering, so the street, the hero's dates
-// and the list read one shape.
-export const withSignups = async (payload: Payload, layout: Block[]): Promise<Block[]> =>
-  Promise.all(
-    layout.map(async (block) => {
+// its own rows. While the sign-up is open, the home page's first windows
+// block lists the sign-up's days instead, the free ones as `free` rows: the
+// street then shows which evenings are left, whatever the block was set to.
+// Resolved before rendering, so the street, the hero's dates and the list
+// read one shape.
+export const withSignups = async (
+  payload: Payload,
+  layout: Block[],
+  { home = false }: { home?: boolean } = {},
+): Promise<Block[]> => {
+  const signup = home ? await payload.findGlobal({ slug: 'signup' }) : null
+  const open = signup?.open ? daysBetween(signup.firstDay, signup.lastDay) : []
+  const live = open.length ? layout.findIndex((block) => block.blockType === 'windows') : -1
+
+  return Promise.all(
+    layout.map(async (block, index) => {
+      if (index === live) {
+        const taken = await payload.find({
+          collection: 'signups',
+          where: { day: { in: open } },
+          limit: open.length,
+          pagination: false,
+        })
+        const byDay = new Map(taken.docs.map((signup) => [signup.day, signup]))
+        return {
+          ...block,
+          signupOpen: true,
+          entries: open.map((day) => {
+            const signup = byDay.get(day)
+            return signup
+              ? {
+                  date: dayDate(day),
+                  names: signup.names,
+                  house: signup.house,
+                  note: signup.note,
+                  time: signup.time,
+                }
+              : { date: dayDate(day), free: true }
+          }),
+        }
+      }
       if (block.blockType !== 'windows' || !block.signupYear) return block
       const signups = await payload.find({
         collection: 'signups',
@@ -80,3 +116,4 @@ export const withSignups = async (payload: Payload, layout: Block[]): Promise<Bl
       }
     }),
   )
+}

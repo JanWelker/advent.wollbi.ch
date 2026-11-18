@@ -5,7 +5,9 @@ import React from 'react'
 
 import config from '@/payload.config'
 import type { Site } from '@/payload-types'
+import { dayLabel } from '@/lib/signup'
 import { evenings } from '@/lib/windows'
+import { signupHref } from './Street'
 
 type Media = {
   url?: string | null
@@ -42,7 +44,8 @@ const Flyer = ({ media, label }: { media: Media; label?: string | null }) => (
 // src/app/(frontend)/kalender.ics and flyer.pdf.
 const WindowsList = ({ block, slug }: { block: Block; slug: string }) => {
   const query = slug === 'home' ? '' : `?seite=${encodeURIComponent(slug)}`
-  const hasEvenings = (block.entries ?? []).length > 0
+  const list = evenings(block)
+  const hasEvenings = list.some((evening) => !evening.free)
   return (
     <section id="fenster" className="windows">
       <div className="wrap">
@@ -62,22 +65,36 @@ const WindowsList = ({ block, slug }: { block: Block; slug: string }) => {
           </div>
         </div>
         <ol className="evenings">
-          {evenings(block).map((evening, i) => (
-            <li key={i} className="evening">
+          {list.map((evening, i) => (
+            <li key={i} className={evening.free ? 'evening is-free' : 'evening'}>
               <span className="evening-date">
                 <span className="evening-day">{evening.day}</span>
                 <abbr className="evening-weekday" title={evening.weekday}>
                   {evening.weekdayShort}
                 </abbr>
               </span>
-              <span className="evening-who">
-                <span className="evening-names">{evening.names}</span>
-                {evening.note ? <span className="evening-note">{evening.note}</span> : null}
-              </span>
-              <span className="evening-where">
-                <span className="evening-house">{evening.house}</span>
-                {evening.time ? <span className="evening-time">ab {evening.time}</span> : null}
-              </span>
+              {evening.free ? (
+                <>
+                  <span className="evening-who">
+                    <span className="evening-names">Noch frei</span>
+                    {evening.time ? <span className="evening-note">ab {evening.time}</span> : null}
+                  </span>
+                  <a className="evening-signup" href={signupHref(evening.key)}>
+                    Anmelden<span className="visually-hidden"> für {dayLabel(evening.key)}</span>
+                  </a>
+                </>
+              ) : (
+                <>
+                  <span className="evening-who">
+                    <span className="evening-names">{evening.names}</span>
+                    {evening.note ? <span className="evening-note">{evening.note}</span> : null}
+                  </span>
+                  <span className="evening-where">
+                    <span className="evening-house">{evening.house}</span>
+                    {evening.time ? <span className="evening-time">ab {evening.time}</span> : null}
+                  </span>
+                </>
+              )}
             </li>
           ))}
         </ol>
